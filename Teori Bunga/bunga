@@ -1,2 +1,63 @@
 # Statistika-Keuangan
 kode program statistika keuangan
+nilaiakumulasi<-function(num,k,i,t,m=TRUE){ 
+#num pilihan bunga
+#1 bunga tunggal
+#2 bunga majemuk
+#k modal
+#i bunga
+#t tahun 
+switch(num,
+       satu={
+       AT=k*(1+i*t)
+       cat("nilai akumulasi bunga tunggal:",AT)
+       },
+       dua={
+       AT=k*(1+i/m)^(m*t)
+       cat("nilai akumulasi bunga majemuk biasa/nominal:",AT)
+       },
+       tiga={
+       AT=k*exp(i*t)
+       cat("nilai akumulasi bunga majemuk kontinu:",AT)
+       })
+return(AT)
+}
+
+nilaiakumulasi(3,1,0.1,5)
+
+setwd("D:\\ghifarmuhammad\\kuliah\\Semester 4\\PSK")
+
+bunga<-function(num,AT,k,t,m=TRUE){ 
+#num pilihan bunga,
+#1 bunga tunggal,
+#2 bunga majemuk,
+#k modal,
+#i bunga,
+#t tahun 
+  switch(num,
+         satu={
+           bunga=((AT/k)-1)/t 
+           cat("nilai bunga tunggal:",bunga)
+         },
+         dua={
+           bunga=m*((AT/k)^(1/(m*t))-1)
+           cat("nilai bunga majemuk nominal/biasa:",bunga)
+         },
+         tiga={
+           bunga=log(AT/k)/t
+           cat("nilai bunga majemuk kontinu:",bunga)
+         })
+  return(bunga)
+}
+
+bunga(3,4000,500,30)
+bunga(2,146.41,100,4)
+
+#SOAL NOMER 3 IBU
+nilaiakumulasi(2,100,0.06,0.5,m=4)
+#hasilnya 103.0225
+nilaiakumulasi(2,303.0225,0.06,2,m=4)
+
+#soal nomer 5 ibu
+bunga(2,300,100,15,m=2)
+#hasilnya 0.07459839
